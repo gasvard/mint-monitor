@@ -1,3 +1,5 @@
+# This script is provided for educational purposes only.
+
 from web3 import Web3
 from bs4 import BeautifulSoup
 from tqdm import tqdm
