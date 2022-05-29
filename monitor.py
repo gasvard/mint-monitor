@@ -20,7 +20,7 @@ w3 = Web3(
 contracts = []
 
 file = open("contracts.csv", "a")
-file.write("tx,contract,balance,name,tokenURI,timestamp")
+file.write("tx,contract,balance,name,tokenURI,minter,timestamp")
 file.close()
 
 async def get_event():
