@@ -19,6 +19,10 @@ w3 = Web3(
 
 contracts = []
 
+file = open("contracts.csv", "a")
+file.write("tx,contract,balance,name,tokenURI,timestamp")
+file.close()
+
 async def get_event():
     async with connect(
         f"wss://mainnet.infura.io/ws/v3/{INFURA_ID}"
@@ -77,16 +81,11 @@ async def get_event():
                         minter_addr = list(decode_single('(address)',bytearray.fromhex(payload['params']['result']['topics'][2][2:])))[0]
                         tx = payload['params']['result']['transactionHash']
                         file = open("contracts.csv", "a")
-                        print("Writing")
                         file.write("\n")
                         file.write(f"{tx},{contract_addr},{contract_balance},{name},{token_uri},{minter_addr},{int(time.time())}")
                         file.close()
 
                         contracts.append(contract_addr)
-
-                        print("New collection", contract_addr)
-                        print(token_id)
-                        print("\n\n")
                     pass
             except:
                 pass
